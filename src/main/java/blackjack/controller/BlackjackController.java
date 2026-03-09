@@ -12,6 +12,8 @@ import java.util.List;
 
 public class BlackjackController {
 
+    private static final String HIT_ANSWER = "y";
+
     private final GameService gameService;
     private final InputView inputView;
 
@@ -65,7 +67,7 @@ public class BlackjackController {
 
     private boolean drawIfWanted(User user) {
         boolean drew = false;
-        while (!user.isFinished() && "y".equals(inputView.readMoreCard(user.getName()))) {
+        while (!user.isFinished() && HIT_ANSWER.equals(inputView.readMoreCard(user.getName()))) {
             gameService.getMoreCard(user);
             OutputView.printSettingCardsResult(user.getName(), user.getCardsName());
             drew = true;

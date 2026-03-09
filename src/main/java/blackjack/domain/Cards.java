@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Cards {
 
+    private static final int BLACKJACK_VALUE = 21;
+    private static final int ACE_BONUS = 10;
+
     private final List<Card> cards;
 
     public Cards() {
@@ -34,8 +37,8 @@ public class Cards {
     }
 
     private int applyBestAceValue(int sum) {
-        if (hasAce() && (sum + 10) <= 21) {
-            return sum + 10;
+        if (hasAce() && (sum + ACE_BONUS) <= BLACKJACK_VALUE) {
+            return sum + ACE_BONUS;
         }
 
         return sum;

@@ -4,6 +4,8 @@ import java.util.List;
 
 public class User {
 
+    private static final int BLACKJACK_VALUE = 21;
+
     private final UserName name;
     private final Cards cards;
 
@@ -33,11 +35,11 @@ public class User {
     }
 
     public boolean isBurst() {
-        return calculateCardsValue() > 21;
+        return calculateCardsValue() > BLACKJACK_VALUE;
     }
 
     private boolean isBlackjack() {
-        return calculateCardsValue() == 21;
+        return calculateCardsValue() == BLACKJACK_VALUE;
     }
 
     public boolean isFinished() {
