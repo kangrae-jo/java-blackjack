@@ -1,4 +1,4 @@
-package blackjack.domain;
+package blackjack.domain.dto;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
