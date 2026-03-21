@@ -1,5 +1,7 @@
 package blackjack.domain.participant;
 
+import blackjack.domain.state.finished.Burst;
+
 public final class Player extends Participant {
 
     public Player(String name) {
@@ -7,10 +9,10 @@ public final class Player extends Participant {
     }
 
     public boolean winsAgainst(Dealer other) {
-        if (other.isBurst()) {
+        if (other.state instanceof Burst) {
             return true;
         }
-        if (this.isBurst()) {
+        if (this.state instanceof Burst) {
             return false;
         }
         return other.getScore() < this.getScore();
@@ -18,7 +20,7 @@ public final class Player extends Participant {
 
     @Override
     public boolean canDraw() {
-        return !isBurst() && !isBlackjack() && !isMaxScore();
+        return !state.isFinished();
     }
 
 }

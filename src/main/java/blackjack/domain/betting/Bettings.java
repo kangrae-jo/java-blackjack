@@ -16,10 +16,10 @@ public class Bettings {
         return new Bettings(bettings);
     }
 
-    public double calculateProfit(Player player, State state) {
+    public double calculateProfit(Player player) {
         BettingAmount bettingAmount = findByPlayer(player)
                 .orElseThrow(() -> new IllegalArgumentException("없는 플레이어입니다."));
-        return state.apply(bettingAmount.amount());
+        return player.profit(bettingAmount.amount());
     }
 
     private Optional<BettingAmount> findByPlayer(Player player) {

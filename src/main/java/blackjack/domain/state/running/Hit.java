@@ -3,6 +3,8 @@ package blackjack.domain.state.running;
 import blackjack.domain.card.Card;
 import blackjack.domain.card.Cards;
 import blackjack.domain.state.State;
+import blackjack.domain.state.finished.Burst;
+import blackjack.domain.state.finished.Stay;
 
 public class Hit extends Running {
 
@@ -11,13 +13,17 @@ public class Hit extends Running {
     }
 
     @Override
-    public State draw(Card card) {
-        return null;
+    public State draw(final Card card) {
+        cards.add(card);
+        if (cards.isBurst()) {
+            return new Burst(cards);
+        }
+        return new Hit(cards);
     }
 
     @Override
     public State stay() {
-        return null;
+        return new Stay(cards);
     }
 
 }
