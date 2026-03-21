@@ -1,7 +1,5 @@
 package blackjack.controller;
 
-import static blackjack.domain.card.Cards.SIZE_OF_INITIAL_CARD;
-
 import blackjack.domain.betting.BettingAmount;
 import blackjack.domain.betting.Bettings;
 import blackjack.domain.deck.Deck;
@@ -17,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 public class BlackjackController {
+
+    public static final int SIZE_OF_INITIAL_CARD = 2;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -83,6 +83,7 @@ public class BlackjackController {
     }
 
     private void getMoreCardsOfPlayer(Player player, Deck deck) {
+        player.checkBlackjack();
         while (player.canDraw() && readPlayerWantMoreCard(player)) {
             player.draw(deck.pop());
             outputView.printCards(player.getName(), player.getCardsName());

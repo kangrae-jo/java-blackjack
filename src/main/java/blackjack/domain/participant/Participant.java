@@ -3,6 +3,7 @@ package blackjack.domain.participant;
 import blackjack.domain.card.Card;
 import blackjack.domain.card.Cards;
 import blackjack.domain.state.State;
+import blackjack.domain.state.finished.Blackjack;
 import blackjack.domain.state.finished.Burst;
 import blackjack.domain.state.running.Hit;
 import java.util.List;
@@ -27,6 +28,12 @@ public abstract class Participant {
 
     public final boolean isBurst() {
         return state instanceof Burst;
+    }
+
+    public final void checkBlackjack() {
+        if (state.cards().isBlackjack()) {
+            state = new Blackjack(state.cards());
+        }
     }
 
     public final double profit(double amount) {
