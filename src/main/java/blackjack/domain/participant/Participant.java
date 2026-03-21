@@ -5,7 +5,6 @@ import blackjack.domain.card.Cards;
 import blackjack.domain.state.State;
 import blackjack.domain.state.finished.Burst;
 import blackjack.domain.state.running.Init;
-import blackjack.domain.state.running.Running;
 import java.util.List;
 
 public abstract class Participant {
@@ -26,10 +25,8 @@ public abstract class Participant {
         return state instanceof Burst;
     }
 
-    public final void checkStay() {
-        if (state instanceof Running) {
-            state = state.stay();
-        }
+    public final void stay() {
+        state = state.stay();
     }
 
     public final double profit(double amount) {
@@ -51,7 +48,7 @@ public abstract class Participant {
     public final String getName() {
         return name.name();
     }
-    
+
     public abstract boolean canDraw();
 
 }

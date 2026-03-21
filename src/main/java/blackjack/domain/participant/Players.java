@@ -31,7 +31,7 @@ public class Players {
 
     public boolean isAllPlayersBurst() {
         return players.stream()
-                .anyMatch(player -> !player.isBurst());
+                .allMatch(Participant::isBurst);
     }
 
     public List<String> getPlayersName() {

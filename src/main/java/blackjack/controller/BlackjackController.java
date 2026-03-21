@@ -85,11 +85,14 @@ public class BlackjackController {
             player.draw(deck.pop());
             outputView.printCards(player.getName(), player.getCardsName());
         }
-        player.checkStay();
     }
 
     private boolean readPlayerWantMoreCard(Player player) {
-        return inputView.readMoreCard(player.getName());
+        if (inputView.readMoreCard(player.getName())) {
+            return true;
+        }
+        player.stay();
+        return false;
     }
 
     private void getMoreCardsOfDealer(Dealer dealer, Players players, Deck deck) {
