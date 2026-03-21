@@ -1,7 +1,6 @@
 package blackjack.domain.betting;
 
 import blackjack.domain.participant.Player;
-import blackjack.domain.state.State;
 import java.util.Map;
 import java.util.Optional;
 

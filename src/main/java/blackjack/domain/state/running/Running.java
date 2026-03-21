@@ -1,0 +1,22 @@
+package blackjack.domain.state.running;
+
+import blackjack.domain.card.Cards;
+import blackjack.domain.state.Started;
+
+public abstract class Running extends Started {
+
+    public Running(Cards cards) {
+        super(cards);
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
+
+    @Override
+    public double profit(double amount) {
+        return 0;
+    }
+
+}

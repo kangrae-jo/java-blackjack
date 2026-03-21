@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import blackjack.domain.participant.Player;
-import blackjack.domain.state.State;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
