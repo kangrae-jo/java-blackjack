@@ -11,7 +11,7 @@ public final class Dealer extends Participant {
 
     @Override
     public boolean canDraw() {
-        return false;
+        return state.cards().calculateSumOfCards() < DEALER_CAN_DRAW_THRESHOLD;
     }
 
 }

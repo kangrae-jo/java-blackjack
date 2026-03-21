@@ -20,10 +20,9 @@ public abstract class Participant {
 
     public final void draw(Card card) {
         state = state.draw(card);
-    }
-
-    public final void stay() {
-        state = state.stay();
+        if (state.cards().isMaxScore()) {
+            state = state.stay();
+        }
     }
 
     public final boolean isBurst() {
