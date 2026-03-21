@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import blackjack.domain.card.Card;
 import blackjack.domain.card.CardShape;
 import blackjack.domain.card.CardValue;
+import blackjack.domain.state.State;
+import blackjack.domain.state.finished.Blackjack;
 import org.junit.jupiter.api.Test;
 
 public class PlayerTest {
@@ -83,14 +85,14 @@ public class PlayerTest {
         // given
         Player player = new Player("밀란");
         player.draw(new Card(CardValue.ACE, CardShape.DIAMOND));
-        player.draw(new Card(CardValue.TEN, CardShape.DIAMOND));
+        player.draw(new Card(CardValue.NINE, CardShape.DIAMOND));
         player.draw(new Card(CardValue.THREE, CardShape.DIAMOND));
 
         // when
         int sum = player.getScore();
 
         // then
-        assertThat(sum).isEqualTo(14);
+        assertThat(sum).isEqualTo(13);
     }
 
     @Test
@@ -130,10 +132,10 @@ public class PlayerTest {
         player.draw(new Card(CardValue.TEN, CardShape.DIAMOND));
 
         // when
-        boolean isBlackjack = player.isBlackjack();
+        State isBlackjack = player.state;
 
         // then
-        assertThat(isBlackjack).isTrue();
+        assertThat(isBlackjack).isInstanceOf(Blackjack.class);
     }
 
     @Test

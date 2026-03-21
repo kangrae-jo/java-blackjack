@@ -3,9 +3,9 @@ package blackjack.domain.participant;
 import blackjack.domain.card.Card;
 import blackjack.domain.card.Cards;
 import blackjack.domain.state.State;
-import blackjack.domain.state.finished.Blackjack;
 import blackjack.domain.state.finished.Burst;
 import blackjack.domain.state.running.Hit;
+import blackjack.domain.state.running.Running;
 import java.util.List;
 
 public abstract class Participant {
@@ -20,18 +20,15 @@ public abstract class Participant {
 
     public final void draw(Card card) {
         state = state.draw(card);
-        if (state.cards().isMaxScore()) {
-            state = state.stay();
-        }
     }
 
     public final boolean isBurst() {
         return state instanceof Burst;
     }
 
-    public final void checkBlackjack() {
-        if (state.cards().isBlackjack()) {
-            state = new Blackjack(state.cards());
+    public final void checkStay() {
+        if (state instanceof Running) {
+            state = state.stay();
         }
     }
 

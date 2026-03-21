@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import blackjack.domain.card.Card;
+import blackjack.domain.card.CardShape;
+import blackjack.domain.card.CardValue;
 import blackjack.domain.participant.Player;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -25,11 +28,12 @@ class BettingsTest {
     void 플레이어와_상태를_알면_수익을_알_수_있다() {
         // given
         Player player = new Player("밀란");
-        int bettingAmount = 1_000;
-        Bettings bettings = Bettings.of(Map.of(player, new BettingAmount(bettingAmount)));
+        player.draw(new Card(CardValue.ACE, CardShape.CLOVER));
+        player.draw(new Card(CardValue.JACK, CardShape.CLOVER));
+        Bettings bettings = Bettings.of(Map.of(player, new BettingAmount(1_000)));
 
         // when
-        int profit = (int) bettings.calculateProfit(player, State.BLACKJACK);
+        int profit = (int) bettings.calculateProfit(player);
 
         // then
         assertThat(profit).isEqualTo(1_500);
@@ -44,7 +48,7 @@ class BettingsTest {
         Bettings bettings = Bettings.of(Map.of(player, new BettingAmount(bettingAmount)));
 
         // when & then
-        assertThatThrownBy(() -> bettings.calculateProfit(other, State.BLACKJACK))
+        assertThatThrownBy(() -> bettings.calculateProfit(other))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

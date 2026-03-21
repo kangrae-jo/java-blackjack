@@ -83,11 +83,11 @@ public class BlackjackController {
     }
 
     private void getMoreCardsOfPlayer(Player player, Deck deck) {
-        player.checkBlackjack();
         while (player.canDraw() && readPlayerWantMoreCard(player)) {
             player.draw(deck.pop());
             outputView.printCards(player.getName(), player.getCardsName());
         }
+        player.checkStay();
     }
 
     private boolean readPlayerWantMoreCard(Player player) {

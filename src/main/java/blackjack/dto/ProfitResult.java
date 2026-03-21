@@ -13,8 +13,7 @@ public record ProfitResult(
     public static ProfitResult from(Players players, Bettings bettings) {
         Map<String, Integer> profitResult = new LinkedHashMap<>();
         for (Player player : players.getPlayers()) {
-            int bettingAmount = (int) bettings.calculateProfit(player);
-            profitResult.put(player.getName(), bettingAmount);
+            profitResult.put(player.getName(), (int) bettings.calculateProfit(player));
         }
         return new ProfitResult(profitResult);
     }

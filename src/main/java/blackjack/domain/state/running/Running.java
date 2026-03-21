@@ -16,7 +16,7 @@ public abstract class Running extends Started {
 
     @Override
     public double profit(double amount) {
-        return 0;
+        throw new UnsupportedOperationException("아직 게임이 진행 중 입니다.");
     }
 
 }

@@ -47,7 +47,7 @@ public class ConsoleOutputView implements OutputView {
         System.out.println();
     }
 
-    private void printResultOfDealer(int profitOfDealer) {
+    private void printResultOfDealer(double profitOfDealer) {
         System.out.println("딜러: " + profitOfDealer);
     }
 
