@@ -16,8 +16,6 @@ import java.util.Map;
 
 public class BlackjackController {
 
-    public static final int SIZE_OF_INITIAL_CARD = 2;
-
     private final InputView inputView;
     private final OutputView outputView;
     private final Deck deck;
@@ -56,7 +54,7 @@ public class BlackjackController {
     }
 
     private void setInitialCards(Players players, Dealer dealer, Deck deck) {
-        for (int i = 0; i < SIZE_OF_INITIAL_CARD; i++) {
+        while (dealer.isInit()) {
             players.draw(deck);
             dealer.draw(deck.pop());
         }

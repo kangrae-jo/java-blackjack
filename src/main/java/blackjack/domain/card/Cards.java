@@ -17,6 +17,10 @@ public class Cards {
     public void add(Card card) {
         cards.add(card);
     }
+    
+    public int size() {
+        return cards.size();
+    }
 
     public boolean isBurst() {
         return calculateSumOfCards() > MAX_SCORE;

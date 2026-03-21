@@ -3,7 +3,6 @@ package blackjack.domain.state.running;
 import blackjack.domain.card.Card;
 import blackjack.domain.card.Cards;
 import blackjack.domain.state.State;
-import blackjack.domain.state.finished.Blackjack;
 import blackjack.domain.state.finished.Burst;
 import blackjack.domain.state.finished.Stay;
 
@@ -18,12 +17,6 @@ public class Hit extends Running {
         cards.add(card);
         if (cards.isBurst()) {
             return new Burst(cards);
-        }
-        if (cards.isBlackjack()) {
-            return new Blackjack(cards);
-        }
-        if (cards.isMaxScore()) {
-            return stay();
         }
         return new Hit(cards);
     }
