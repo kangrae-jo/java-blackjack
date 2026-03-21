@@ -30,5 +30,7 @@ public abstract class Finished extends Started {
     public double profit(double amount) {
         return 0;
     }
-    
+
+    public abstract double earningRate();
+
 }

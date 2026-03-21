@@ -8,4 +8,9 @@ public class Burst extends Finished {
         super(cards);
     }
 
+    @Override
+    public double earningRate() {
+        return 0;
+    }
+    
 }
