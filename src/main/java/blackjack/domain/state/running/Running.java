@@ -1,6 +1,7 @@
 package blackjack.domain.state.running;
 
 import blackjack.domain.card.Cards;
+import blackjack.domain.participant.Dealer;
 import blackjack.domain.state.Started;
 
 public abstract class Running extends Started {
@@ -15,7 +16,7 @@ public abstract class Running extends Started {
     }
 
     @Override
-    public double profit(double amount) {
+    public double profit(Dealer dealer, double amount) {
         throw new UnsupportedOperationException("아직 게임이 진행 중 입니다.");
     }
 

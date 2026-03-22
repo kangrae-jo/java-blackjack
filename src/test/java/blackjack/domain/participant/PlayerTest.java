@@ -51,18 +51,22 @@ public class PlayerTest {
     }
 
     @Test
-    void 승자를_판단하는_기능_테스트() {
+    void Stay_상태에서_딜러보다_점수가_낮으면_수익이_음수다() {
         // given
         Player milan = new Player("밀란");
-        milan.draw(new Card(CardValue.FOUR, CardShape.DIAMOND));
+        milan.draw(new Card(CardValue.TEN, CardShape.DIAMOND));
+        milan.draw(new Card(CardValue.SEVEN, CardShape.CLOVER));
+        milan.stay();
+
         Dealer dealer = new Dealer();
-        dealer.draw(new Card(CardValue.SIX, CardShape.CLOVER));
+        dealer.draw(new Card(CardValue.TEN, CardShape.HEART));
+        dealer.draw(new Card(CardValue.EIGHT, CardShape.SPADE));
 
         // when
-        boolean isWin = milan.winsAgainst(dealer);
+        double profit = milan.profit(dealer, 1_000);
 
         // then
-        assertThat(isWin).isFalse();
+        assertThat(profit).isEqualTo(-1_000);
     }
 
     @Test

@@ -36,7 +36,7 @@ public class BlackjackController {
 
         getMoreCardsOfParticipants(players, dealer, deck);
         printCardsOfParticipants(players, dealer);
-        printResult(bettings, players);
+        printResult(bettings, players, dealer);
     }
 
     private Players readPlayers() {
@@ -113,8 +113,8 @@ public class BlackjackController {
         }
     }
 
-    private void printResult(Bettings bettings, Players players) {
-        outputView.printResult(ProfitResult.from(players, bettings));
+    private void printResult(Bettings bettings, Players players, Dealer dealer) {
+        outputView.printResult(ProfitResult.from(players, dealer, bettings));
     }
 
 }

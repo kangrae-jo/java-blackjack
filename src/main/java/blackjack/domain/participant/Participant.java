@@ -29,10 +29,6 @@ public abstract class Participant {
         state = state.stay();
     }
 
-    public final double profit(double amount) {
-        return state.profit(amount);
-    }
-
     public final int getScore() {
         return state.cards().calculateSumOfCards();
     }
