@@ -2,9 +2,9 @@ package blackjack.domain.state.finished;
 
 import blackjack.domain.card.Cards;
 
-public class Burst extends Finished {
+public final class Burst extends Finished {
 
-    public Burst(Cards cards) {
+    public Burst(final Cards cards) {
         super(cards);
     }
 
@@ -12,5 +12,5 @@ public class Burst extends Finished {
     public double earningRate() {
         return -1.0;
     }
-    
+
 }

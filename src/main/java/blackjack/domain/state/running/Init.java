@@ -5,16 +5,16 @@ import blackjack.domain.card.Cards;
 import blackjack.domain.state.State;
 import blackjack.domain.state.finished.Blackjack;
 
-public class Init extends Running {
+public final class Init extends Running {
 
     private static final int SIZE_OF_INITIAL_CARD = 2;
 
-    public Init(Cards cards) {
+    public Init(final Cards cards) {
         super(cards);
     }
 
     @Override
-    public State draw(Card card) {
+    public State draw(final Card card) {
         cards.add(card);
         if (cards.size() < SIZE_OF_INITIAL_CARD) {
             return new Init(cards);

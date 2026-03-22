@@ -6,9 +6,9 @@ import blackjack.domain.state.State;
 import blackjack.domain.state.finished.Burst;
 import blackjack.domain.state.finished.Stay;
 
-public class Hit extends Running {
+public final class Hit extends Running {
 
-    public Hit(Cards cards) {
+    public Hit(final Cards cards) {
         super(cards);
     }
 

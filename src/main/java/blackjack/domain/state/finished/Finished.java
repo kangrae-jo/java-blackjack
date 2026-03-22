@@ -7,12 +7,12 @@ import blackjack.domain.state.State;
 
 public abstract class Finished extends Started {
 
-    public Finished(Cards cards) {
+    public Finished(final Cards cards) {
         super(cards);
     }
 
     @Override
-    public State draw(Card card) {
+    public State draw(final Card card) {
         throw new UnsupportedOperationException("더 이상 카드를 뽑을 수 없습니다.");
     }
 
@@ -27,7 +27,7 @@ public abstract class Finished extends Started {
     }
 
     @Override
-    public double profit(double amount) {
+    public double profit(final double amount) {
         return amount * earningRate();
     }
 

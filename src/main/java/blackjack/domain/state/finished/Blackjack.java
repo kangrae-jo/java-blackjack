@@ -2,9 +2,9 @@ package blackjack.domain.state.finished;
 
 import blackjack.domain.card.Cards;
 
-public class Blackjack extends Finished {
+public final class Blackjack extends Finished {
 
-    public Blackjack(Cards cards) {
+    public Blackjack(final Cards cards) {
         super(cards);
     }
 
