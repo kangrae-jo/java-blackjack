@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import blackjack.domain.card.Card;
 import blackjack.domain.card.CardShape;
 import blackjack.domain.card.CardValue;
+import blackjack.domain.state.State;
+import blackjack.domain.state.finished.Blackjack;
 import org.junit.jupiter.api.Test;
 
 public class PlayerTest {
@@ -49,18 +51,22 @@ public class PlayerTest {
     }
 
     @Test
-    void 승자를_판단하는_기능_테스트() {
+    void Stay_상태에서_딜러보다_점수가_낮으면_수익이_음수다() {
         // given
         Player milan = new Player("밀란");
-        milan.draw(new Card(CardValue.FOUR, CardShape.DIAMOND));
+        milan.draw(new Card(CardValue.TEN, CardShape.DIAMOND));
+        milan.draw(new Card(CardValue.SEVEN, CardShape.CLOVER));
+        milan.stay();
+
         Dealer dealer = new Dealer();
-        dealer.draw(new Card(CardValue.SIX, CardShape.CLOVER));
+        dealer.draw(new Card(CardValue.TEN, CardShape.HEART));
+        dealer.draw(new Card(CardValue.EIGHT, CardShape.SPADE));
 
         // when
-        boolean isWin = milan.winsAgainst(dealer);
+        double profit = milan.profit(dealer, 1_000);
 
         // then
-        assertThat(isWin).isFalse();
+        assertThat(profit).isEqualTo(-1_000);
     }
 
     @Test
@@ -83,14 +89,14 @@ public class PlayerTest {
         // given
         Player player = new Player("밀란");
         player.draw(new Card(CardValue.ACE, CardShape.DIAMOND));
-        player.draw(new Card(CardValue.TEN, CardShape.DIAMOND));
+        player.draw(new Card(CardValue.NINE, CardShape.DIAMOND));
         player.draw(new Card(CardValue.THREE, CardShape.DIAMOND));
 
         // when
         int sum = player.getScore();
 
         // then
-        assertThat(sum).isEqualTo(14);
+        assertThat(sum).isEqualTo(13);
     }
 
     @Test
@@ -130,10 +136,10 @@ public class PlayerTest {
         player.draw(new Card(CardValue.TEN, CardShape.DIAMOND));
 
         // when
-        boolean isBlackjack = player.isBlackjack();
+        State isBlackjack = player.state;
 
         // then
-        assertThat(isBlackjack).isTrue();
+        assertThat(isBlackjack).isInstanceOf(Blackjack.class);
     }
 
     @Test

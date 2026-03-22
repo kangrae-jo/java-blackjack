@@ -30,10 +30,8 @@ public class Players {
     }
 
     public boolean isAllPlayersBurst() {
-        int burstUserCount = (int) players.stream()
-                .filter(Player::isBurst)
-                .count();
-        return players.size() == burstUserCount;
+        return players.stream()
+                .allMatch(Participant::isBurst);
     }
 
     public List<String> getPlayersName() {

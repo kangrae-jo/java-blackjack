@@ -1,0 +1,37 @@
+package blackjack.domain.state.finished;
+
+import blackjack.domain.card.Card;
+import blackjack.domain.card.Cards;
+import blackjack.domain.participant.Dealer;
+import blackjack.domain.state.Started;
+import blackjack.domain.state.State;
+
+public abstract class Finished extends Started {
+
+    public Finished(final Cards cards) {
+        super(cards);
+    }
+
+    @Override
+    public State draw(final Card card) {
+        throw new UnsupportedOperationException("더 이상 카드를 뽑을 수 없습니다.");
+    }
+
+    @Override
+    public State stay() {
+        throw new UnsupportedOperationException("이미 완료된 동작입니다.");
+    }
+
+    @Override
+    public boolean isFinished() {
+        return true;
+    }
+
+    @Override
+    public double profit(final Dealer dealer, final double amount) {
+        return amount * earningRate();
+    }
+
+    public abstract double earningRate();
+
+}

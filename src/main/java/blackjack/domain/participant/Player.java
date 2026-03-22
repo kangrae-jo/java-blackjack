@@ -6,19 +6,13 @@ public final class Player extends Participant {
         super(name);
     }
 
-    public boolean winsAgainst(Dealer other) {
-        if (other.isBurst()) {
-            return true;
-        }
-        if (this.isBurst()) {
-            return false;
-        }
-        return other.getScore() < this.getScore();
+    public double profit(Dealer dealer, double amount) {
+        return state.profit(dealer, amount);
     }
 
     @Override
     public boolean canDraw() {
-        return !isBurst() && !isBlackjack() && !isMaxScore();
+        return !state.isFinished();
     }
 
 }

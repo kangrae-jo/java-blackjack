@@ -1,7 +1,7 @@
 package blackjack.domain.betting;
 
+import blackjack.domain.participant.Dealer;
 import blackjack.domain.participant.Player;
-import blackjack.domain.state.State;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,10 +17,10 @@ public class Bettings {
         return new Bettings(bettings);
     }
 
-    public double calculateProfit(Player player, State state) {
+    public double calculateProfit(Player player, Dealer dealer) {
         BettingAmount bettingAmount = findByPlayer(player)
                 .orElseThrow(() -> new IllegalArgumentException("없는 플레이어입니다."));
-        return state.apply(bettingAmount.amount());
+        return player.profit(dealer, bettingAmount.amount());
     }
 
     private Optional<BettingAmount> findByPlayer(Player player) {

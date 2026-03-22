@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Cards {
 
-    public static final int SIZE_OF_INITIAL_CARD = 2;
     private static final int MAX_SCORE = 21;
     private static final int ACE_ADVANTAGE_VALUE = 10;
 
@@ -17,6 +16,10 @@ public class Cards {
 
     public void add(Card card) {
         cards.add(card);
+    }
+    
+    public int size() {
+        return cards.size();
     }
 
     public boolean isBurst() {

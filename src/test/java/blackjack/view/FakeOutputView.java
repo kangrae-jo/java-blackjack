@@ -1,7 +1,8 @@
-package blackjack.view.output;
+package blackjack.view;
 
 import blackjack.dto.CardResult;
 import blackjack.dto.ProfitResult;
+import blackjack.view.output.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;

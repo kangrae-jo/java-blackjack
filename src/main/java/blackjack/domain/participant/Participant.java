@@ -2,48 +2,47 @@ package blackjack.domain.participant;
 
 import blackjack.domain.card.Card;
 import blackjack.domain.card.Cards;
+import blackjack.domain.state.State;
+import blackjack.domain.state.finished.Burst;
+import blackjack.domain.state.running.Init;
 import java.util.List;
 
 public abstract class Participant {
 
     private final ParticipantName name;
-    private final Cards cards;
+    protected State state;
 
     public Participant(String name) {
         this.name = new ParticipantName(name);
-        this.cards = new Cards();
+        this.state = new Init(new Cards());
     }
 
     public final void draw(Card card) {
-        cards.add(card);
-    }
-
-    public final int getScore() {
-        return cards.calculateSumOfCards();
+        state = state.draw(card);
     }
 
     public final boolean isBurst() {
-        return cards.isBurst();
+        return state instanceof Burst;
     }
 
-    public final boolean isBlackjack() {
-        return cards.isBlackjack();
+    public final void stay() {
+        state = state.stay();
     }
 
-    public final boolean isMaxScore() {
-        return cards.isMaxScore();
+    public final int getScore() {
+        return state.cards().calculateSumOfCards();
     }
 
     public final String getFirstCardName() {
-        return cards.getFirstCardName();
+        return state.cards().getFirstCardName();
+    }
+
+    public final List<String> getCardsName() {
+        return state.cards().getCardsName();
     }
 
     public final String getName() {
         return name.name();
-    }
-
-    public final List<String> getCardsName() {
-        return cards.getCardsName();
     }
 
     public abstract boolean canDraw();

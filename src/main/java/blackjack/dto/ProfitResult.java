@@ -4,7 +4,6 @@ import blackjack.domain.betting.Bettings;
 import blackjack.domain.participant.Dealer;
 import blackjack.domain.participant.Player;
 import blackjack.domain.participant.Players;
-import blackjack.domain.state.State;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -15,8 +14,7 @@ public record ProfitResult(
     public static ProfitResult from(Players players, Dealer dealer, Bettings bettings) {
         Map<String, Integer> profitResult = new LinkedHashMap<>();
         for (Player player : players.getPlayers()) {
-            int bettingAmount = (int) bettings.calculateProfit(player, State.from(player, dealer));
-            profitResult.put(player.getName(), bettingAmount);
+            profitResult.put(player.getName(), (int) bettings.calculateProfit(player, dealer));
         }
         return new ProfitResult(profitResult);
     }
