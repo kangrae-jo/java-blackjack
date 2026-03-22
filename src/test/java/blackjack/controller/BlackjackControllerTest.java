@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import blackjack.domain.deck.Deck;
 import blackjack.domain.deck.MyShuffle;
-import blackjack.view.input.FakeInputView;
-import blackjack.view.output.FakeOutputView;
+import blackjack.view.FakeInputView;
+import blackjack.view.FakeOutputView;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 

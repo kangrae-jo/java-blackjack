@@ -1,5 +1,6 @@
-package blackjack.view.input;
+package blackjack.view;
 
+import blackjack.view.input.InputView;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
